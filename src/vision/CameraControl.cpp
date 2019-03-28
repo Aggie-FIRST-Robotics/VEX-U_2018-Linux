@@ -1,6 +1,7 @@
 #include "vision/CameraControl.h"
 
 int CameraControl::configureCamera(Spinnaker::CameraPtr camera) {
+	std::cout << "Configuring camera" << std::endl;
 	Spinnaker::GenApi::CStringPtr vendor_name_ptr = camera->GetNodeMap().GetNode("DeviceModelName");
 	std::cout << "Camera name: " << vendor_name_ptr->GetValue() << std::endl;
 	
@@ -13,7 +14,7 @@ int CameraControl::configureCamera(Spinnaker::CameraPtr camera) {
 	frame_rate_enable->SetValue(true);
 
 	Spinnaker::GenApi::CFloatPtr frame_rate = camera->GetNodeMap().GetNode("AcquisitionFrameRate");
-	frame_rate->SetValue(20.0);
+	frame_rate->SetValue(10.0);
 	
 	std::cout << "Camera mode set to continuous." << std::endl;
 	return 0;
@@ -45,7 +46,7 @@ int CameraControl::postStreamConfigureCamera(Spinnaker::CameraPtr camera) {
 	balance_white_auto_ptr->SetIntValue(balance_white_auto_off);
 
 	Spinnaker::GenApi::CFloatPtr exposure_time = camera->GetNodeMap().GetNode("ExposureTime");
-	exposure_time->SetValue(15000);
+	exposure_time->SetValue(10000);
 
 	Spinnaker::GenApi::CFloatPtr gain = camera->GetNodeMap().GetNode("Gain");
 	gain->SetValue(15);
@@ -64,7 +65,7 @@ int CameraControl::postStreamConfigureCamera(Spinnaker::CameraPtr camera) {
 	return 0;
 }
 
-int CameraControl::closeCamera(Spinnaker::CameraPtr camera) {
+int CameraControl::closeCamera(Spinnaker::CameraPtr& camera) {
 	Spinnaker::GenApi::CEnumerationPtr balance_white_auto_ptr = camera->GetNodeMap().GetNode("BalanceWhiteAuto");
 	Spinnaker::GenApi::CEnumEntryPtr balance_white_auto_off_ptr = balance_white_auto_ptr->GetEntryByName("Continuous");
 	int64_t balance_white_auto_off = balance_white_auto_off_ptr->GetValue();

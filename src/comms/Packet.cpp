@@ -83,3 +83,9 @@ Header::Header (char* buf) {
 	this->destination 	= *reinterpret_cast<uint8_t*>(buf);
 	this->num_frames	= *reinterpret_cast<uint8_t*>(buf + 1);
 }
+
+unsigned long millis() {
+	struct timespec a;
+    clock_gettime(CLOCK_REALTIME, &a);
+    return (a.tv_sec%1000000)*1000 + a.tv_nsec/1000000;
+}

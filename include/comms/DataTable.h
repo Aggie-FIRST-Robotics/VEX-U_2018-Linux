@@ -2,9 +2,8 @@
 #define DATA_TABLE_H
 
 #include "comms/Packet.h"
+#include <iostream>
 #include <mutex> 
-
-using namespace std;
 
 constexpr static uint8_t TABLE_SIZE = 64;
 
@@ -21,9 +20,6 @@ public:
 	//Returns false if address is not valid
 	bool update(Frame a);
 
-	//Ages all variables by a given period of time
-	void age_by(unsigned long period);
-
 	//Returns a constant reference to a variable
 	short read(uint8_t addr);
 
@@ -31,8 +27,6 @@ public:
 	unsigned long card(uint8_t addr);
 
 private:
-
-	//mutex mtx;
 
 	short 			variables [TABLE_SIZE];
 	unsigned long 	age [TABLE_SIZE];

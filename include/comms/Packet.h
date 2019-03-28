@@ -1,8 +1,10 @@
 #ifndef PACKET_H
 #define PACKET_H
 
-using namespace std;
 #include <cstdint>
+#include <sys/time.h>
+#include <time.h>
+#include <ctime>
 
 constexpr static uint8_t FRAME_SIZE = 4;
 constexpr static uint8_t HEADER_SIZE = 7;
@@ -43,5 +45,8 @@ struct Header {
 	Header (char* buf);
 
 };
+
+//returns realtime of the system in milliseconds
+unsigned long millis();
 
 #endif

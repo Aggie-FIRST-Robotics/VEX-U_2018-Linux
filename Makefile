@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -std=c++11 -g
 INCLUDE_DIRS = -I/usr/include/spinnaker/ -I$(CURDIR)/include/
-LDFLAGS = -lSpinnaker -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lserial -pthread
+LDFLAGS = -lSpinnaker -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc
 TARGET = VEXU_2019_Targeting
 
 SRC_DIR = src
